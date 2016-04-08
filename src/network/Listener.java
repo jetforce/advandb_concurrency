@@ -6,8 +6,10 @@
 package network;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,13 +23,35 @@ public class Listener extends Thread{
     private BufferedReader reader;
     private Socket mysocket;
     private boolean life;
-    private String name;
+    private String name= null;
     private Middle m;
+    private BufferedWriter writer;
     
-    public Listener(Socket soc, Middle m){
-        this.life = true;
-        
+    public Listener(Socket soc, Middle m) throws IOException{
+        this.life = true;   
+        this.name = "";
+        this.writer = new BufferedWriter( new OutputStreamWriter(soc.getOutputStream())); 
     }
+    
+    public Listener(Socket soc,Middle m,String name ) throws IOException{
+        this.life = true;   
+        this.name = name;
+        this.writer = new BufferedWriter( new OutputStreamWriter(soc.getOutputStream())); 
+    }
+    
+    public boolean sendName(){
+        try {
+            writer.write(this.name+"\n");
+        } catch (IOException ex) {
+            this.life = false;
+            Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+        
+        return true;
+    }
+    
     
     public void run(){   
         
@@ -35,16 +59,20 @@ public class Listener extends Thread{
         
         try {
             this.reader = new BufferedReader(new InputStreamReader(this.mysocket.getInputStream()));
-            this.name = this.reader.readLine();
-            System.out.println("received "+this.name);
-            switch(name){
-                case "main": m.connectMain(this);
-                    break;
-                case "palawan":m.connectPalawan(this);
-                    break;
-                case "marinduque":m.connectMarinduque(this);
-                    break;
+            
+            if(this.name.isEmpty()){
+                this.name = this.reader.readLine();
+                System.out.println("received "+this.name);
+                switch(name){
+                    case "main": m.connectMain(this);
+                        break;
+                    case "palawan":m.connectPalawan(this);
+                        break;
+                    case "marinduque":m.connectMarinduque(this);
+                        break;
+                }
             }
+
             
             
             while((line= this.reader.readLine()) != null){

@@ -5,6 +5,9 @@
  */
 package network;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 /**
@@ -25,7 +28,7 @@ public class Middle {
        
     }    
     
-    public void connect(Socket socket){
+    public void connect(Socket socket) throws IOException{
         Listener l = new Listener(socket,this);
         l.start();      
     }
@@ -41,6 +44,27 @@ public class Middle {
     public void connectMarinduque(Listener l ){
         this.marinduque = l;
     }
+    
+    
+    
+    public void connectMain(Connector c) throws IOException{
+        Listener l = new Listener(c.getSocket(),this,"main");
+        this.main = l;
+    }
+    
+    public void connectPalawan(Connector c) throws IOException{
+        Listener l = new Listener(c.getSocket(),this,"palawan");
+        this.palawan = l;
+    }
+    
+    public void connectMarinduque(Connector c) throws IOException{
+         Listener l = new Listener(c.getSocket(),this,"marinduque");
+        this.marinduque = l;
+    }
+    
+    
+    
+    
     
    
 }

@@ -5,6 +5,7 @@
  */
 package advandb_concurrency;
 
+import dboperations.Receiver;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -31,8 +32,18 @@ public class Advandb_concurrency {
         
         try{
             
-            Node n = new Node("main", 1234);
+            Node n = new Node("main", 1234,new UI());
             n.activate();
+            /*
+            String query_stmt = 
+            "\"SELECT COUNT(*) FROM fact;\"";
+            String testQuery = 
+            "INSERT\n" +
+            "INTO transactions (place_id, query_stmt, synced)\n" +
+            "VALUES (1, " + query_stmt + ", 0);";
+        Receiver r = new Receiver(testQuery);
+        r.work();
+            */
             /*
             Node n2 = new Node("palawan", 1235);
             n2.activate();

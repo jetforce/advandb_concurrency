@@ -9,6 +9,7 @@ import java.io.IOException;
 import network.Connector;
 import network.Middle;
 import network.Server;
+import threadpool.ThreadPool;
 
 /**
  *
@@ -22,7 +23,11 @@ public class Node {
     private int port;
     private UI ui;
     
+    public ThreadPool executor; 
+    
     public Node(String name,int port) throws IOException{
+        this.executor = new ThreadPool(8,1000);
+        this.executor.start();
         this.middle = new Middle(name);
         this.port = port;
         this.name = name;
@@ -30,12 +35,15 @@ public class Node {
     }
      
     public Node(String name,int port,UI ui) throws IOException{
+        this.executor = new ThreadPool(8,1000);
+        this.executor.start();
         this.ui = ui;
         this.middle = new Middle(name);
         this.port = port;
         this.name = name;
         this.server = new Server(port,name,this.middle);  
     }
+    
     public void activate(){
         this.server.start();
         Connector c = new Connector("localhost", 1234 ,"main",this.middle);

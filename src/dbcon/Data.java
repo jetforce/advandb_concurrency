@@ -13,7 +13,9 @@ import java.sql.SQLException;
  *
  * @author Hannah
  */
-public class DBConnection {
+public class Data {
+    
+    public static Connection con = getConnection("root", "0987", "_main");
     
     private static Connection getConnection(String user, String password, String schema){
         

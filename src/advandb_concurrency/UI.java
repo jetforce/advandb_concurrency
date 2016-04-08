@@ -5,8 +5,15 @@
  */
 package advandb_concurrency;
 
+import dbcon.Data;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -30,6 +37,31 @@ public class UI {
         deleteField = frame.deleteField;
         updateField = frame.updateField;
         infoArea = frame.infoArea;
+    }
+    
+    private void execute(String query) {
+        PreparedStatement s = null;
+        String type = query.substring(0, query.indexOf("\n")).trim();
+        System.out.println(" > TYPE: " + type);
+        System.out.println(" > QUERY: " + query);
+       
+        try {
+            
+            if(type.equals("UPDATE")) {
+                s = Data.con.prepareStatement(query);
+                s.executeUpdate();
+            }
+            else if(type.equals("DELETE")) {
+                s = Data.con.prepareStatement(query);
+                s.executeUpdate();
+            }
+            else {
+                System.out.println("Error in TYPE: " + type);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error in EXECUTE: UI.java");
+        }
     }
     
     private void read() {

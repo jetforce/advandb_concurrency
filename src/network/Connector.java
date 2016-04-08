@@ -35,15 +35,15 @@ public class Connector {
         
         try {
             this.socket = new Socket(address,port);
-            System.out.println("connected!");
+            //System.out.println("connected!");
             switch(this.myname){
-                case "main": System.out.println("Connecting to main");
+                case "main": //System.out.println("Connecting to main");
                     m.connectMain(this);
                     break;
-                case "palawan":System.out.println("Connecting to palawan");
+                case "palawan"://System.out.println("Connecting to palawan");
                     m.connectPalawan(this);
                     break;
-                case "marinduque":System.out.println("Connecting to marinduque");
+                case "marinduque"://System.out.println("Connecting to marinduque");
                     m.connectMarinduque(this);
                     break;
             }

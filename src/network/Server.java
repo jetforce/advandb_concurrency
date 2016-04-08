@@ -26,7 +26,7 @@ public class Server extends Thread{
     
     public Server(int port,String name,Middle m) throws IOException{
         this.name = name;
-        this.middle = this.middle;
+        this.middle = m;
         this.life = true;
         this.port = port;
         this.server = new ServerSocket(port);
@@ -40,7 +40,7 @@ public class Server extends Thread{
             try {  
                 socket= this.server.accept();
                 this.middle.connect(socket);    
-                System.out.println("Resiv connect");
+                //System.out.println("Resiv connect");
             } catch (IOException ex) {
                 System.out.println("Failed to accept connection");
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);

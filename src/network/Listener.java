@@ -56,13 +56,13 @@ public class Listener extends Thread{
         
         try {
             
-           System.out.println("Created Reader");
+          
             this.reader = new BufferedReader(new InputStreamReader(this.mysocket.getInputStream()));
             if(this.name.isEmpty()){
                
-                System.out.println("Receiving name");
+                
                 this.name = this.reader.readLine();
-                System.out.println("received "+this.name);
+                
                 switch(name){
                     case "main": m.connectMain(this);
                         break;
@@ -74,7 +74,7 @@ public class Listener extends Thread{
             }
 
             
-            System.out.println("Receiveing more");
+           
             while((line= this.reader.readLine()) != null){
                 System.out.println(this.name+" received "+line);                       
             }

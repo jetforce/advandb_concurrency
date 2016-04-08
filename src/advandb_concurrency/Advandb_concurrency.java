@@ -30,32 +30,17 @@ public class Advandb_concurrency {
         
         
         try{
-             Middle m2 = new Middle();
-             Server s = new Server(1234,"main",m2);
-             s.start();
+            
+            Node n = new Node("main", 1234);
+            n.activate();
+            /*
+            Node n2 = new Node("palawan", 1235);
+            n2.activate();
+            */
+            
         }catch(Exception e){
             System.out.println("Unable to start server");
-        }
-        try {
-            sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Advandb_concurrency.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        Middle m =new Middle();
-        Connector c;
-        c = new Connector("localhost",1234,"main",m);
-        c.Connect();
-        
-        
-        c = new Connector("localhost",1234,"palawan",m);
-        c.Connect();
-        
-        
-        
-        
-        
+        }        
     }
     
 }

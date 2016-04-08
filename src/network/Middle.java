@@ -19,9 +19,10 @@ public class Middle {
     private Listener main;
     private Listener palawan;
     private Listener marinduque;
+    private String name;
     
-    public Middle(){
-        
+    public Middle(String name){
+        this.name = name;
         this.main = null;
         this.palawan = null;
         this.marinduque = null;
@@ -35,18 +36,19 @@ public class Middle {
     
     public void connectMain(Listener l){
         this.main = l;
+        System.out.println(this.name +"connected to "+"main");
         
     }
     
     public void connectPalawan(Listener l){
         this.palawan = l;
-        
+        System.out.println(this.name +"connected to "+"Palawan");
     }
     
     public void connectMarinduque(Listener l ){
         this.marinduque = l;
+        System.out.println(this.name +"connected to "+"Marinduque");
     }
-    
     
     
     public void connectMain(Connector c) throws IOException{
@@ -56,11 +58,13 @@ public class Middle {
             l.sendName();
             this.main = l;
             l.start();
+            System.out.println(this.name +"connected to "+"main");
         }else if(!this.main.isAlive()){
             Listener l = new Listener(c.getSocket(),this,"main");
             l.sendName();
             this.main = l;
             l.start();
+            System.out.println(this.name +"connected to "+"main");
         }
 
         
@@ -72,11 +76,13 @@ public class Middle {
             l.sendName();
             this.palawan = l;
             l.start();
+            System.out.println(this.name +"connected to "+"Palawan");
         }else if(!this.palawan.isAlive()){
             Listener l = new Listener(c.getSocket(),this,"palawan");
             l.sendName();
             this.palawan = l;
             l.start();
+            System.out.println(this.name +"connected to "+"Palawan");
         }
     }
     
@@ -87,11 +93,13 @@ public class Middle {
             l.sendName();
             this.marinduque = l;
             l.start();
+            System.out.println(this.name +"connected to "+"Marinduque");
         }else if(!this.marinduque.isAlive()){
             Listener l = new Listener(c.getSocket(),this,"marinduque");
             l.sendName();
             this.marinduque = l;
             l.start();
+            System.out.println(this.name +"connected to "+"Marinduque");
         }
 
     }

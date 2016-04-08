@@ -5,6 +5,7 @@
  */
 package advandb_concurrency;
 
+import dboperations.QueryCreator;
 import dboperations.Receiver;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -39,8 +40,8 @@ public class Advandb_concurrency {
         
         try{
             
-            Node n = new Node("main", 1234,new UI());
-            n.activate();
+            // Node n = new Node("main", 1234,new UI());
+            // n.activate();
             
             /*
             String query_stmt = 

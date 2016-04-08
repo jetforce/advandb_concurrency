@@ -6,6 +6,8 @@
 package advandb_concurrency;
 
 import dbcon.Data;
+import dboperations.QueryCreator;
+import dboperations.Receiver;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -46,6 +48,15 @@ public class UI {
         frame.setVisible(true);
     }
     
+    private void addTransaction(String query_stmt, int place_id) {
+        String testQuery = 
+            "INSERT\n" +
+            "INTO transactions (place_id, query_stmt, synced)\n" +
+            "VALUES (" + place_id + ", " + query_stmt + ", 0);";
+        Receiver r = new Receiver(testQuery);
+        r.work();
+    }
+    
     private void read() {
         
         int times = Integer.parseInt(readField.getText());
@@ -56,7 +67,13 @@ public class UI {
     }
     
     private void delete(){
-        
+        QueryCreator qc = new QueryCreator();
+        int n = Integer.parseInt(deleteField.getText());
+        for(int i = 0; i < n; i++) {
+            String query_stmt = "\"" + qc.delete() + "\""; 
+            addTransaction(query_stmt, 1);  // 1 is hardcoded / to be replaced
+        }
+        System.out.println("> > FINISHED DELETING");
     }
     
     private void update(){

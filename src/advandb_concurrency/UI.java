@@ -55,6 +55,10 @@ public class UI {
                 s = Data.con.prepareStatement(query);
                 s.executeUpdate();
             }
+            else if(type.equals("SELECT")) {
+                s = Data.con.prepareStatement(query);
+                s.execute();
+            }
             else {
                 System.out.println("Error in TYPE: " + type);
             }

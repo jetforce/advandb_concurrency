@@ -40,8 +40,7 @@ public class UI {
         frame.setVisible(true);
     }
     
-    
-    private void read() {
+        private void read() {
         
     }
     

@@ -18,6 +18,17 @@ public class Receiver implements Task{
     
     private String query;
     
+    public static void main(String args[]) {
+        String query_stmt = 
+            "\"SELECT COUNT(*) FROM fact;\"";
+        String testQuery = 
+            "INSERT\n" +
+            "INTO transactions (place_id, query_stmt, synced)\n" +
+            "VALUES (1, " + query_stmt + ", 0);";
+        Receiver r = new Receiver(testQuery);
+        r.work();
+    }
+    
     public Receiver(String query){
         this.query = query;
     }
@@ -31,16 +42,26 @@ public class Receiver implements Task{
        
         try {
             
-            if(type.equals("UPDATE")) {
-                s = Data.con.prepareStatement(query);
-                s.executeUpdate();
-            }
-            else if(type.equals("DELETE")) {
-                s = Data.con.prepareStatement(query);
-                s.executeUpdate();
-            }
-            else {
-                System.out.println("Error in TYPE: " + type);
+            switch (type) {
+                case "UPDATE":
+                    s = Data.con.prepareStatement(query);
+                    s.executeUpdate();
+                    break;
+                case "DELETE":
+                    s = Data.con.prepareStatement(query);
+                    s.executeUpdate();
+                    break;
+                case "SELECT":
+                    s = Data.con.prepareStatement(query);
+                    s.execute();
+                    break;
+                case "INSERT":
+                    s = Data.con.prepareStatement(query);
+                    s.execute();
+                    break;
+                default:
+                    System.out.println("Error in TYPE: " + type);
+                    break;
             }
             
         } catch (SQLException ex) {

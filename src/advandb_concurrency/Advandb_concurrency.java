@@ -33,11 +33,13 @@ public class Advandb_concurrency {
         
         
         try {
+            
             UI ui =  new UI();
-            Node n = new Node("main",1234,ui);
+            //Node n = new Node("marinduque",1234,ui);
+            MarinduqueNode n = new MarinduqueNode(ui);
             ui.startUI(n);
             n.activate();
-
+            
             
         } catch (IOException ex) {
             Logger.getLogger(Advandb_concurrency.class.getName()).log(Level.SEVERE, null, ex);

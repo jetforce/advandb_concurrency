@@ -17,11 +17,11 @@ import threadpool.ThreadPool;
  */
 public class Node {
     
-    private Middle middle;
-    private Server server;
-    private String name;
-    private int port;
-    private UI ui;
+    protected Middle middle;
+    protected Server server;
+    protected String name;
+    protected int port;
+    protected UI ui;
     
     public ThreadPool executor;
     /*
@@ -51,15 +51,22 @@ public class Node {
        
     
         this.server.start();
-        Connector c = new Connector("localhost", this.port ,"main",this.middle);
+        Connector c = new Connector("localhost", this.port ,this.name,"main",this.middle);
+        Connector c2 = new Connector("192.168.1.17",1234,this.name,"main",this.middle);
+        
         c.ConnectSelf(this.port);
+        c2.Connect();
     }
     
     public void readSelf(int times , String Query){
         this.middle.local_write_multiple(times, Query);
     }
     
-    
+    public void sendMain(){
+        System.out.println("Hereeee");
+       boolean n = this.middle.sendMain("SELECT\n+ * FROM survey\n");
+       System.out.println(n);
+    }
     
     
     

@@ -31,7 +31,8 @@ public class Connector {
     }
     
     
-    public Connector(String address,int port,String name, Middle m){
+    public Connector(String address,int port,String name,String urname, Middle m){
+        this.urname = urname;
         this.address = address;
         this.port = port;
         this.myname = name;
@@ -53,9 +54,9 @@ public class Connector {
         
         try {
             this.socket = new Socket(address,port);
-            //System.out.println("connected!");
-            switch(this.myname){
-                case "main": //System.out.println("Connecting to main");
+            System.out.println("connected! " +this.myname);
+            switch(this.urname){
+                case "main": System.out.println("Connecting to main");
                     m.connectMain(this);
                     break;
                 case "palawan"://System.out.println("Connecting to palawan");

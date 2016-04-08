@@ -75,6 +75,7 @@ public class UI {
     }
     
     private void delete(){
+        /*
         QueryCreator qc = new QueryCreator();
         int n = Integer.parseInt(deleteField.getText());
         for(int i = 0; i < n; i++) {
@@ -82,6 +83,8 @@ public class UI {
             addTransaction(query_stmt, 1);  // 1 is hardcoded / to be replaced
         }
         System.out.println("> > FINISHED DELETING");
+                */
+        this.node.sendMain();
     }
     
     private void update(){

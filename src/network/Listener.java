@@ -51,7 +51,8 @@ public class Listener extends Thread{
     
     public boolean sendMessage(String message){     
         try {
-            writer.write(this.name+"\n");
+            //System.out.println("I WROTE HERE "+this.name);
+            writer.write(message+"\n");
             writer.flush();
             return true;
         } catch (IOException ex) {

@@ -23,30 +23,32 @@ public class Connector {
     private String address;
     private int port;
     
-    public Connector(String address,int port,String name,String urname, Middle m){
-        
+    public Connector(String address,int port,String name, Middle m){
         this.address = address;
         this.port = port;
         this.myname = name;
         this.m = m;
-        this.urname = urname;
     }
     
     public void Connect(){
         
         try {
             this.socket = new Socket(address,port);
-             
-            switch(urname){
-                case "main": m.connectMain(this);
+            System.out.println("connected!");
+            switch(this.myname){
+                case "main": System.out.println("Connecting to main");
+                    m.connectMain(this);
                     break;
-                case "palawan":m.connectPalawan(this);
+                case "palawan":System.out.println("Connecting to palawan");
+                    m.connectPalawan(this);
                     break;
-                case "marinduque":m.connectMarinduque(this);
+                case "marinduque":System.out.println("Connecting to marinduque");
+                    m.connectMarinduque(this);
                     break;
             }
             
         } catch (IOException ex) {
+            System.out.println("Failed to connect");
             Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
         }
          

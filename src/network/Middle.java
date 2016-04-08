@@ -35,10 +35,12 @@ public class Middle {
     
     public void connectMain(Listener l){
         this.main = l;
+        
     }
     
     public void connectPalawan(Listener l){
         this.palawan = l;
+        
     }
     
     public void connectMarinduque(Listener l ){
@@ -49,22 +51,25 @@ public class Middle {
     
     public void connectMain(Connector c) throws IOException{
         Listener l = new Listener(c.getSocket(),this,"main");
+        l.sendName();
         this.main = l;
+        l.start();
     }
     
     public void connectPalawan(Connector c) throws IOException{
         Listener l = new Listener(c.getSocket(),this,"palawan");
+        l.sendName();
         this.palawan = l;
+        l.start();
     }
     
     public void connectMarinduque(Connector c) throws IOException{
          Listener l = new Listener(c.getSocket(),this,"marinduque");
-        this.marinduque = l;
+         l.sendName();
+         this.marinduque = l;
+         l.start();
     }
     
     
     
-    
-    
-   
 }

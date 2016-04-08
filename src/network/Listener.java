@@ -28,28 +28,25 @@ public class Listener extends Thread{
     private BufferedWriter writer;
     
     public Listener(Socket soc, Middle m) throws IOException{
+        this.mysocket = soc;
         this.life = true;   
         this.name = "";
+        this.m=m;
         this.writer = new BufferedWriter( new OutputStreamWriter(soc.getOutputStream())); 
     }
     
     public Listener(Socket soc,Middle m,String name ) throws IOException{
+        this.mysocket = soc;
         this.life = true;   
         this.name = name;
+        this.m =m;
         this.writer = new BufferedWriter( new OutputStreamWriter(soc.getOutputStream())); 
     }
     
-    public boolean sendName(){
-        try {
-            writer.write(this.name+"\n");
-        } catch (IOException ex) {
-            this.life = false;
-            Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-        
-        
-        return true;
+    public void sendName() throws IOException{
+        writer.write(this.name+"\n");
+        writer.flush();
+        System.out.println("Wrote");
     }
     
     
@@ -58,9 +55,12 @@ public class Listener extends Thread{
         String line;
         
         try {
-            this.reader = new BufferedReader(new InputStreamReader(this.mysocket.getInputStream()));
             
+           System.out.println("Created Reader");
+            this.reader = new BufferedReader(new InputStreamReader(this.mysocket.getInputStream()));
             if(this.name.isEmpty()){
+               
+                System.out.println("Receiving name");
                 this.name = this.reader.readLine();
                 System.out.println("received "+this.name);
                 switch(name){
@@ -74,7 +74,7 @@ public class Listener extends Thread{
             }
 
             
-            
+            System.out.println("Receiveing more");
             while((line= this.reader.readLine()) != null){
                 System.out.println(this.name+" received "+line);                       
             }

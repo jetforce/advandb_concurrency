@@ -5,7 +5,9 @@
  */
 package network;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -24,12 +26,28 @@ public class Connector {
     private String address;
     private int port;
     
+    public Connector(){
+        
+    }
+    
+    
     public Connector(String address,int port,String name, Middle m){
         this.address = address;
         this.port = port;
         this.myname = name;
         this.m = m;
     }
+    
+    public void ConnectSelf(int port) throws IOException {
+        
+            this.socket = new Socket("localhost",port);
+            BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(socket.getOutputStream())); 
+            writer.write(myname+"\n");
+            writer.flush();
+            this.m.setLocal(writer);
+            
+    }
+    
     
     public void Connect(){
         

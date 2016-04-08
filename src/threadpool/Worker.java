@@ -32,8 +32,7 @@ public class Worker extends Thread {
                 t.work();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Worker.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                  
+            }               
         }
     }
     

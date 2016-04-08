@@ -27,6 +27,12 @@ public class UI {
     JButton readGo, deleteGo, updateGo;
     JTextField readField, deleteField, updateField;
     JTextArea infoArea;
+    private Node node;
+    
+    public UI(Node node){
+        this.node = node;
+    }
+    
     
     public void startUI() {
         Frame frame = new Frame();
@@ -42,13 +48,18 @@ public class UI {
     
     private void read() {
         
-    }
-    
-    private void delete() {
+        int times = Integer.parseInt(readField.getText());
+        System.out.println("times "+times );
+        String Query = "SELECT"+"\n"+"* FROM test"+"\n";
+        this.node.readSelf(times,Query);
         
     }
     
-    private void update() {
+    private void delete(){
+        
+    }
+    
+    private void update(){
         
     }
     

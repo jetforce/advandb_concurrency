@@ -23,8 +23,8 @@ public class Node {
     private int port;
     private UI ui;
     
-    public ThreadPool executor; 
-    
+    public ThreadPool executor;
+
     public Node(String name,int port) throws IOException{
         this.executor = new ThreadPool(8,1000);
         this.executor.start();
@@ -44,17 +44,19 @@ public class Node {
         this.server = new Server(port,name,this.middle);  
     }
     
-    public void activate(){
+    
+    
+     
+    public void activate(UI ui) throws IOException{
+        this.ui = ui;
         this.server.start();
-        ui.startUI();
-        Connector c = new Connector("localhost", 1234 ,"main",this.middle);
-        c.Connect();
+        this.ui.startUI();
+        Connector c = new Connector("localhost", this.port ,"main",this.middle);
+        c.ConnectSelf(this.port);
     }
     
-    public void readSelf(){
-    
-        
-        
+    public void readSelf(int times , String Query){
+        this.middle.local_write_multiple(times, Query);
     }
     
     

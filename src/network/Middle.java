@@ -10,6 +10,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import threadpool.ThreadPool;
 
 /**
@@ -23,6 +25,7 @@ public class Middle {
     private Listener marinduque;
     private String name;
     private ThreadPool pool;
+    private BufferedWriter local_write = null;
     
     public Middle(String name, ThreadPool pool){
         this.pool = pool;
@@ -30,8 +33,31 @@ public class Middle {
         this.main = null;
         this.palawan = null;
         this.marinduque = null;
+        
        
     }    
+    
+    
+    public void local_write_multiple(int times, String query){
+        ReadSender sender= new ReadSender(times,query,local_write);
+        sender.start();
+    }
+    
+    
+    public void local_writ(String query){
+        try {
+            local_write.write(query+"\n");
+            local_write.flush();
+        } catch (IOException ex) {
+            System.out.println("Unable to listen self");
+            Logger.getLogger(Middle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    public void setLocal(BufferedWriter writer){
+        this.local_write = writer;
+    }
     
     public void addTask(String q){
         pool.putTask(new Receiver(q));

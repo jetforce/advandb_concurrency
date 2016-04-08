@@ -91,6 +91,7 @@ public class Listener extends Thread{
                 System.out.println(this.name+" received "+line);
                 inAll=inAll + line +"\n";
                 if(line.isEmpty()){
+                    System.out.println("Al:" +inAll);
                     m.addTask(inAll);
                     inAll = "";
                     //execute whatever here

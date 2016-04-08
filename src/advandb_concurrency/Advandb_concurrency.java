@@ -15,7 +15,8 @@ public class Advandb_concurrency {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        String s = "\n";
+        System.out.println(s.length());
     }
     
 }

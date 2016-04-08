@@ -49,18 +49,30 @@ public class Listener extends Thread{
         System.out.println("Wrote");
     }
     
+    public boolean sendMessage(String message){     
+        try {
+            writer.write(this.name+"\n");
+            writer.flush();
+            return true;
+        } catch (IOException ex) {
+            life = false;
+            Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+    }
     
     public void run(){   
         
         String line;
+        String inAll = "";
         
         try {
             
           
             this.reader = new BufferedReader(new InputStreamReader(this.mysocket.getInputStream()));
             if(this.name.isEmpty()){
-               
-                
+                     
                 this.name = this.reader.readLine();
                 
                 switch(name){
@@ -76,7 +88,14 @@ public class Listener extends Thread{
             
            
             while((line= this.reader.readLine()) != null){
-                System.out.println(this.name+" received "+line);                       
+                System.out.println(this.name+" received "+line);
+                inAll=inAll + line +"\n";
+                if(line.isEmpty()){
+                    m.addTask(inAll);
+                    inAll = "";
+                    //execute whatever here
+                }
+                
             }
                 
         } catch (IOException ex) {

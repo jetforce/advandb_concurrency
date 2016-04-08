@@ -37,32 +37,9 @@ public class UI {
         deleteField = frame.deleteField;
         updateField = frame.updateField;
         infoArea = frame.infoArea;
+        frame.setVisible(true);
     }
     
-    private void execute(String query) {
-        PreparedStatement s = null;
-        String type = query.substring(0, query.indexOf("\n")).trim();
-        System.out.println(" > TYPE: " + type);
-        System.out.println(" > QUERY: " + query);
-       
-        try {
-            
-            if(type.equals("UPDATE")) {
-                s = Data.con.prepareStatement(query);
-                s.executeUpdate();
-            }
-            else if(type.equals("DELETE")) {
-                s = Data.con.prepareStatement(query);
-                s.executeUpdate();
-            }
-            else {
-                System.out.println("Error in TYPE: " + type);
-            }
-            
-        } catch (SQLException ex) {
-            System.out.println("Error in EXECUTE: UI.java");
-        }
-    }
     
     private void read() {
         

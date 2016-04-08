@@ -28,7 +28,7 @@ public class Node {
     public Node(String name,int port) throws IOException{
         this.executor = new ThreadPool(8,1000);
         this.executor.start();
-        this.middle = new Middle(name);
+        this.middle = new Middle(name,executor);
         this.port = port;
         this.name = name;
         this.server = new Server(port,name,this.middle);  
@@ -38,7 +38,7 @@ public class Node {
         this.executor = new ThreadPool(8,1000);
         this.executor.start();
         this.ui = ui;
-        this.middle = new Middle(name);
+        this.middle = new Middle(name,executor);
         this.port = port;
         this.name = name;
         this.server = new Server(port,name,this.middle);  
@@ -46,9 +46,18 @@ public class Node {
     
     public void activate(){
         this.server.start();
+        ui.startUI();
         Connector c = new Connector("localhost", 1234 ,"main",this.middle);
         c.Connect();
     }
+    
+    public void readSelf(){
+    
+        
+        
+    }
+    
+    
     
     
     

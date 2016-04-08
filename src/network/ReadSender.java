@@ -35,7 +35,7 @@ public class ReadSender extends Thread {
                 this.writer.write(query+"\n");
                 this.writer.flush();
             } catch (IOException ex) {
-                System.out.println("failed local write");
+                System.out.println("failed write");
                 Logger.getLogger(ReadSender.class.getName()).log(Level.SEVERE, null, ex);
             }
             

@@ -30,15 +30,7 @@ public class Advandb_concurrency {
      */
     public static void main(String[] args) {
         
-        String testQuery = 
-                "UPDATE \n transactions "
-                + " SET synced = 1 "
-                + " WHERE transaction_id = 1"
-                + " AND place_id = 1";
-        Receiver r = new Receiver(testQuery);
-        r.work();
-        
-        try{
+
             
             // Node n = new Node("main", 1234,new UI());
             // n.activate();
@@ -57,11 +49,17 @@ public class Advandb_concurrency {
             Node n2 = new Node("palawan", 1235);
             n2.activate();
             */
+
+        try {
+            Node n = new Node("main",1234);
+            n.activate(new UI(n));
+
             
+        } catch (IOException ex) {
+            Logger.getLogger(Advandb_concurrency.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
-        }catch(Exception e){
-            System.out.println("Unable to start server");
-        }        
+   
     }
     
 }

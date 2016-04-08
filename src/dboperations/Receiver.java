@@ -5,9 +5,11 @@
  */
 package dboperations;
 
+import advandb_concurrency.UI;
 import dbcon.Data;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 import threadpool.Task;
 
 /**
@@ -21,8 +23,11 @@ public class Receiver implements Task{
     public static void main(String args[]) {
     }
     
-    public Receiver(String query){
+    private UI ui;
+    
+    public Receiver(String query,UI ui){
         this.query = query;
+        this.ui = ui;
     }
     
     @Override
@@ -36,14 +41,18 @@ public class Receiver implements Task{
             
             switch (type) {
                 case "UPDATE":
+                    this.ui.addInfo(" UPDATE : "+ query);
                     s = Data.con.prepareStatement(query);
                     s.executeUpdate();
                     break;
                 case "DELETE":
+                    this.ui.addInfo(" DELETE : "+ query);
                     s = Data.con.prepareStatement(query);
                     s.executeUpdate();
                     break;
                 case "SELECT":
+                    System.out.println("Select sucess!");
+                    //this.ui.addInfo("Select success!");
                     s = Data.con.prepareStatement(query);
                     s.execute();
                     break;
@@ -57,7 +66,7 @@ public class Receiver implements Task{
             }
             
         } catch (SQLException ex) {
-            System.out.println("Error in EXECUTE: UI.java");
+            System.out.println(ex.toString());
         }
     }
     

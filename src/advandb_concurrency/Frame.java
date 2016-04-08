@@ -43,7 +43,6 @@ public class Frame extends javax.swing.JFrame {
         infoArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 650));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 650));
@@ -65,17 +64,17 @@ public class Frame extends javax.swing.JFrame {
 
         readField.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         readField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        readField.setText("0");
+        readField.setText("5");
         readField.setPreferredSize(new java.awt.Dimension(100, 44));
 
         updateField.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         updateField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        updateField.setText("0");
+        updateField.setText("5");
         updateField.setPreferredSize(new java.awt.Dimension(100, 44));
 
         deleteField.setFont(new java.awt.Font("Courier New", 0, 24)); // NOI18N
         deleteField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        deleteField.setText("0");
+        deleteField.setText("5");
         deleteField.setPreferredSize(new java.awt.Dimension(100, 44));
 
         readGoBtn.setBackground(new java.awt.Color(255, 255, 255));

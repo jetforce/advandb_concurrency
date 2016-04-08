@@ -53,15 +53,23 @@ public class UI {
             "INSERT\n" +
             "INTO transactions (place_id, query_stmt, synced)\n" +
             "VALUES (" + place_id + ", " + query_stmt + ", 0);";
-        Receiver r = new Receiver(testQuery);
-        r.work();
+        //Receiver r = new Receiver(testQuery);
+        //r.work();
     }
     
+
+    public void addInfo(String info){
+        System.out.println("Hello");
+        infoArea.append(info+"\n");
+    }
+    
+    
+
     private void read() {
         
         int times = Integer.parseInt(readField.getText());
         System.out.println("times "+times );
-        String Query = "SELECT"+"\n"+"* FROM test"+"\n";
+        String Query = "SELECT"+"\n"+"* FROM survey"+"\n";
         this.node.readSelf(times,Query);
         
     }

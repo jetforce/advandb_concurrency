@@ -24,7 +24,7 @@ public class Node {
     private UI ui;
     
     public ThreadPool executor;
-
+    /*
     public Node(String name,int port) throws IOException{
         this.executor = new ThreadPool(8,1000);
         this.executor.start();
@@ -32,22 +32,24 @@ public class Node {
         this.port = port;
         this.name = name;
         this.server = new Server(port,name,this.middle);  
-    }
+    }*/
      
-    public Node(String name,int port,UI ui) throws IOException{
+    public Node(String name,int port) throws IOException{
         this.executor = new ThreadPool(8,1000);
         this.executor.start();
-        this.ui = ui;
-        this.middle = new Middle(name,executor);
+        //this.ui = ui;
+        
         this.port = port;
         this.name = name;
-        this.server = new Server(port,name,this.middle);  
+ 
     }
     
     
     
      
     public void activate(UI ui) throws IOException{
+        this.middle = new Middle(name,executor,this.ui);
+        this.server = new Server(port,name,this.middle);  
         this.ui = ui;
         this.server.start();
         this.ui.startUI();

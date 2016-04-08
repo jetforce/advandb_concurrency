@@ -23,7 +23,7 @@ public class Listener extends Thread{
     private BufferedReader reader;
     private Socket mysocket;
     private boolean life;
-    private String name= null;
+    private String name= "";
     private Middle m;
     private BufferedWriter writer;
     

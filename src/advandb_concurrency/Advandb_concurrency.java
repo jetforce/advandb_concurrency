@@ -30,29 +30,13 @@ public class Advandb_concurrency {
      */
     public static void main(String[] args) {
         
-
-            
-            // Node n = new Node("main", 1234,new UI());
-            // n.activate();
-            
-            /*
-            String query_stmt = 
-            "\"SELECT COUNT(*) FROM fact;\"";
-            String testQuery = 
-            "INSERT\n" +
-            "INTO transactions (place_id, query_stmt, synced)\n" +
-            "VALUES (1, " + query_stmt + ", 0);";
-        Receiver r = new Receiver(testQuery);
-        r.work();
-            */
-            /*
-            Node n2 = new Node("palawan", 1235);
-            n2.activate();
-            */
-
+        
+        
         try {
-            Node n = new Node("main",1234);
-            n.activate(new UI(n));
+            UI ui =  new UI();
+            Node n = new Node("main",1234,ui);
+            ui.startUI(n);
+            n.activate();
 
             
         } catch (IOException ex) {

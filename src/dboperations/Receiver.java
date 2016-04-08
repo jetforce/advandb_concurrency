@@ -7,8 +7,11 @@ package dboperations;
 
 import advandb_concurrency.UI;
 import dbcon.Data;
+
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 
 import threadpool.Task;
 
@@ -36,23 +39,26 @@ public class Receiver implements Task{
         String type = query.substring(0, query.indexOf("\n")).trim().toUpperCase();
         System.out.println(" > TYPE: " + type);
         System.out.println(" > QUERY: " + query);
-       
+        Date utilDate = new Date();
+     
+       // display time and date using toString()
+ 
         try {
             
             switch (type) {
                 case "UPDATE":
-                    this.ui.addInfo(" UPDATE : "+ query);
+                    this.ui.addInfo( new java.sql.Timestamp(utilDate.getTime()) +" UPDATE : "+ query);
                     s = Data.con.prepareStatement(query);
                     s.executeUpdate();
                     break;
                 case "DELETE":
-                    this.ui.addInfo(" DELETE : "+ query);
+                    this.ui.addInfo(new java.sql.Timestamp(utilDate.getTime())+ " DELETE : "+ query);
                     s = Data.con.prepareStatement(query);
                     s.executeUpdate();
                     break;
                 case "SELECT":
-                    System.out.println("Select sucess!");
-                    //this.ui.addInfo("Select success!");
+                    
+                    this.ui.addInfo(new java.sql.Timestamp(utilDate.getTime()) + " SELECT : "+query);
                     s = Data.con.prepareStatement(query);
                     s.execute();
                     break;

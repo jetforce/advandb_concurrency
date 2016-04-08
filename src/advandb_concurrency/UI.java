@@ -31,12 +31,12 @@ public class UI {
     JTextArea infoArea;
     private Node node;
     
-    public UI(Node node){
+
+    
+    
+    public void startUI(Node node){
         this.node = node;
-    }
-    
-    
-    public void startUI() {
+        
         Frame frame = new Frame();
         readGo = frame.readGoBtn;           readGo.addActionListener(new GoListener("read"));
         deleteGo = frame.deleteGoBtn;       deleteGo.addActionListener(new GoListener("delete"));

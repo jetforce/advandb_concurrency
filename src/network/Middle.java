@@ -5,6 +5,7 @@
  */
 package network;
 
+import advandb_concurrency.UI;
 import dboperations.Receiver;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -26,8 +27,10 @@ public class Middle {
     private String name;
     private ThreadPool pool;
     private BufferedWriter local_write = null;
+    private UI ui;
     
-    public Middle(String name, ThreadPool pool){
+    public Middle(String name, ThreadPool pool,UI ui){
+        this.ui = ui;
         this.pool = pool;
         this.name = name;
         this.main = null;
@@ -60,7 +63,7 @@ public class Middle {
     }
     
     public void addTask(String q){
-        pool.putTask(new Receiver(q));
+        pool.putTask(new Receiver(q,this.ui));
     }
     
     

@@ -29,38 +29,15 @@ public class Advandb_concurrency {
      */
     public static void main(String[] args) {
         
-        String testQuery = 
-                "UPDATE \n transactions "
-                + " SET synced = 1 "
-                + " WHERE transaction_id = 1"
-                + " AND place_id = 1";
-        Receiver r = new Receiver(testQuery);
-        r.work();
-        
-        try{
+        try {
+            Node n = new Node("main",1234);
+            n.activate(new UI(n));
             
-            Node n = new Node("main", 1234,new UI());
-            n.activate();
+        } catch (IOException ex) {
+            Logger.getLogger(Advandb_concurrency.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
-            /*
-            String query_stmt = 
-            "\"SELECT COUNT(*) FROM fact;\"";
-            String testQuery = 
-            "INSERT\n" +
-            "INTO transactions (place_id, query_stmt, synced)\n" +
-            "VALUES (1, " + query_stmt + ", 0);";
-        Receiver r = new Receiver(testQuery);
-        r.work();
-            */
-            /*
-            Node n2 = new Node("palawan", 1235);
-            n2.activate();
-            */
-            
-            
-        }catch(Exception e){
-            System.out.println("Unable to start server");
-        }        
+   
     }
     
 }

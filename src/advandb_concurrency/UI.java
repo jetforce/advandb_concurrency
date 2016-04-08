@@ -46,6 +46,11 @@ public class UI {
         frame.setVisible(true);
     }
     
+    public void addInfo(String info){
+        infoArea.append(info+"\n");
+    }
+    
+    
     private void read() {
         
         int times = Integer.parseInt(readField.getText());

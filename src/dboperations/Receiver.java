@@ -5,9 +5,11 @@
  */
 package dboperations;
 
+import advandb_concurrency.UI;
 import dbcon.Data;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import threadpool.Task;
 
 /**
@@ -21,8 +23,11 @@ public class Receiver implements Task{
     public static void main(String args[]) {
     }
     
-    public Receiver(String query){
+    private UI ui;
+    
+    public Receiver(String query,UI ui){
         this.query = query;
+        this.ui = ui;
     }
     
     @Override
@@ -36,6 +41,7 @@ public class Receiver implements Task{
             
             switch (type) {
                 case "UPDATE":
+                    this.ui.addInfo(LocalDateTime.now()+ " UPDATE : "+ query);
                     s = Data.con.prepareStatement(query);
                     s.executeUpdate();
                     break;

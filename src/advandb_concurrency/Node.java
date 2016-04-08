@@ -20,6 +20,7 @@ public class Node {
     private Server server;
     private String name;
     private int port;
+    private UI ui;
     
     public Node(String name,int port) throws IOException{
         this.middle = new Middle(name);
@@ -27,7 +28,14 @@ public class Node {
         this.name = name;
         this.server = new Server(port,name,this.middle);  
     }
-    
+     
+    public Node(String name,int port,UI ui) throws IOException{
+        this.ui = ui;
+        this.middle = new Middle(name);
+        this.port = port;
+        this.name = name;
+        this.server = new Server(port,name,this.middle);  
+    }
     public void activate(){
         this.server.start();
         Connector c = new Connector("localhost", 1234 ,"main",this.middle);

@@ -29,11 +29,19 @@ public class Advandb_concurrency {
      */
     public static void main(String[] args) {
         
+        String testQuery = 
+                "UPDATE \n transactions "
+                + " SET synced = 1 "
+                + " WHERE transaction_id = 1"
+                + " AND place_id = 1";
+        Receiver r = new Receiver(testQuery);
+        r.work();
         
         try{
             
             Node n = new Node("main", 1234,new UI());
             n.activate();
+            
             /*
             String query_stmt = 
             "\"SELECT COUNT(*) FROM fact;\"";
@@ -48,6 +56,7 @@ public class Advandb_concurrency {
             Node n2 = new Node("palawan", 1235);
             n2.activate();
             */
+            
             
         }catch(Exception e){
             System.out.println("Unable to start server");

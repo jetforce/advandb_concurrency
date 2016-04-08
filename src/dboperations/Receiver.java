@@ -19,7 +19,6 @@ public class Receiver implements Task{
     private String query;
     
     public static void main(String args[]) {
-
     }
     
     public Receiver(String query){
@@ -29,7 +28,7 @@ public class Receiver implements Task{
     @Override
     public void work() {
         PreparedStatement s = null;
-        String type = query.substring(0, query.indexOf("\n")).trim();
+        String type = query.substring(0, query.indexOf("\n")).trim().toUpperCase();
         System.out.println(" > TYPE: " + type);
         System.out.println(" > QUERY: " + query);
        

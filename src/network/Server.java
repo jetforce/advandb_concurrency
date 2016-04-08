@@ -24,9 +24,9 @@ public class Server extends Thread{
     private String name;
     
     
-    public Server(int port,String name) throws IOException{
+    public Server(int port,String name,Middle m) throws IOException{
         this.name = name;
-        this.middle = new Middle();
+        this.middle = this.middle;
         this.life = true;
         this.port = port;
         this.server = new ServerSocket(port);

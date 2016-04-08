@@ -6,6 +6,7 @@
 package network;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +48,9 @@ public class Connector {
                     break;
             }
             
-        } catch (IOException ex) {
+        }catch(ConnectException e){
+            System.out.println("Unable to connect to "+this.myname);
+        }catch (IOException ex) {
             System.out.println("Failed to connect");
             Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
         }

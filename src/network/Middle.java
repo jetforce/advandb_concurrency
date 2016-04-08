@@ -50,24 +50,50 @@ public class Middle {
     
     
     public void connectMain(Connector c) throws IOException{
-        Listener l = new Listener(c.getSocket(),this,"main");
-        l.sendName();
-        this.main = l;
-        l.start();
+        
+        if(this.main == null){
+            Listener l = new Listener(c.getSocket(),this,"main");
+            l.sendName();
+            this.main = l;
+            l.start();
+        }else if(!this.main.isAlive()){
+            Listener l = new Listener(c.getSocket(),this,"main");
+            l.sendName();
+            this.main = l;
+            l.start();
+        }
+
+        
     }
     
     public void connectPalawan(Connector c) throws IOException{
-        Listener l = new Listener(c.getSocket(),this,"palawan");
-        l.sendName();
-        this.palawan = l;
-        l.start();
+        if(this.palawan==null){
+            Listener l = new Listener(c.getSocket(),this,"palawan");
+            l.sendName();
+            this.palawan = l;
+            l.start();
+        }else if(!this.palawan.isAlive()){
+            Listener l = new Listener(c.getSocket(),this,"palawan");
+            l.sendName();
+            this.palawan = l;
+            l.start();
+        }
     }
     
     public void connectMarinduque(Connector c) throws IOException{
-         Listener l = new Listener(c.getSocket(),this,"marinduque");
-         l.sendName();
-         this.marinduque = l;
-         l.start();
+        
+        if(this.marinduque==null){
+            Listener l = new Listener(c.getSocket(),this,"marinduque");
+            l.sendName();
+            this.marinduque = l;
+            l.start();
+        }else if(!this.marinduque.isAlive()){
+            Listener l = new Listener(c.getSocket(),this,"marinduque");
+            l.sendName();
+            this.marinduque = l;
+            l.start();
+        }
+
     }
     
     

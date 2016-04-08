@@ -27,8 +27,11 @@ public class Advandb_concurrency {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        
         try{
-             Server s = new Server(1234,"main");
+             Middle m2 = new Middle();
+             Server s = new Server(1234,"main",m2);
              s.start();
         }catch(Exception e){
             System.out.println("Unable to start server");
@@ -38,6 +41,7 @@ public class Advandb_concurrency {
         } catch (InterruptedException ex) {
             Logger.getLogger(Advandb_concurrency.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         Middle m =new Middle();
         Connector c;

@@ -29,7 +29,7 @@ public class QueryCreator {
         String deleteQuery = 
             "DELETE\n" +
             "FROM survey " +
-            "WHERE house_id = " + getRandomNum();
+            "WHERE house_id = " + getMax();
         return deleteQuery;
     }
     
@@ -54,16 +54,6 @@ public class QueryCreator {
         }
         
         return max;
-    }
-    
-    private int getRandomNum() {
-        Random rand = new Random();
-        
-        int x = rand.nextInt(getMax()) + 1;
-        
-        System.out.println(" > random num: " + x);
-        
-        return x;
     }
     
 }

@@ -5,7 +5,9 @@
  */
 package advandb_concurrency;
 
+import dboperations.QueryCreator;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +22,17 @@ public class PalawanNode extends Node{
     
     @Override
     public void sendMain(){
+        
+        ArrayList<String> queries = new ArrayList<>();
+        QueryCreator qc = new QueryCreator();
+        int n = Integer.parseInt(ui.deleteField.getText());
+        for(int i = 0; i < n; i++) {
+            String query_stmt = qc.delete(); 
+            queries.add(query_stmt);
+            //addTransaction(query_stmt, 1);  // 1 is hardcoded / to be replaced
+        }
+        
+        super.middle.multiple_updateMain(queries);
         
     }
     

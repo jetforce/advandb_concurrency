@@ -5,17 +5,8 @@
  */
 package advandb_concurrency;
 
-import dbcon.Data;
-import dboperations.QueryCreator;
-import dboperations.Receiver;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -75,15 +66,6 @@ public class UI {
     }
     
     private void delete(){
-        /*
-        QueryCreator qc = new QueryCreator();
-        int n = Integer.parseInt(deleteField.getText());
-        for(int i = 0; i < n; i++) {
-            String query_stmt = "\"" + qc.delete() + "\""; 
-            addTransaction(query_stmt, 1);  // 1 is hardcoded / to be replaced
-        }
-        System.out.println("> > FINISHED DELETING");
-                */
         this.node.sendMain();
     }
     

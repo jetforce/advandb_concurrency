@@ -36,7 +36,7 @@ public class Advandb_concurrency {
             
             UI ui =  new UI();
             //Node n = new Node("marinduque",1234,ui);
-            MarinduqueNode n = new MarinduqueNode(ui);
+            MainNode n = new MainNode(ui);
             ui.startUI(n);
             n.activate();
             

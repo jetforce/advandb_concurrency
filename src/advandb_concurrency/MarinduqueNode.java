@@ -17,9 +17,10 @@ public class MarinduqueNode extends Node{
         super("marinduque", 1235, ui);
     }
     
+    @Override
     public void sendMain(){
-        
+        //ArrayList<String> queries;
+        super.middle.multiple_updateMain(null);
     }
-    
-    
+   
 }

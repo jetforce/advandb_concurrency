@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import threadpool.ThreadPool;
@@ -40,6 +41,11 @@ public class Middle {
        
     }    
     
+    
+    public void multiple_updateMain(ArrayList<String> queries){
+        UpdateSender sender = new UpdateSender(queries,this);
+        sender.start();
+    }
     
     public void local_write_multiple(int times, String query){
         ReadSender sender= new ReadSender(times,query,local_write);

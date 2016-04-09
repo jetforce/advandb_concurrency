@@ -39,15 +39,7 @@ public class UI {
         frame.setVisible(true);
     }
     
-    private void addTransaction(String query_stmt, int place_id) {
-        String testQuery = 
-            "INSERT\n" +
-            "INTO transactions (place_id, query_stmt, synced)\n" +
-            "VALUES (" + place_id + ", " + query_stmt + ", 0);";
-        //Receiver r = new Receiver(testQuery);
-        //r.work();
-    }
-    
+
 
     public void addInfo(String info){
         System.out.println("Hello");

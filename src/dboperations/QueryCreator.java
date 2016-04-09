@@ -48,7 +48,7 @@ public class QueryCreator {
         for(int i = 0; i < n; i++) {
             String deleteQuery = 
                 "DELETE\n" +
-                "FROM survey " +
+                "FROM location " +
                 "WHERE house_id = " + max + "\n";
             queries.add(deleteQuery);
             max--;

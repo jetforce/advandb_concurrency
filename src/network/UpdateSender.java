@@ -28,9 +28,9 @@ public class UpdateSender extends Thread{
        for(int i=0; i< q.size(); i++){
             n = this.m.sendMain(this.q.get(i)); 
        if(n){
-           //Success sending
+           //
        }else{
-           //fail sending
+           this.m.local_write(this.q.get(i));
        }
             
         }

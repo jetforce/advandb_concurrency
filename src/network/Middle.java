@@ -53,7 +53,7 @@ public class Middle {
     }
     
     
-    public void local_writ(String query){
+    public void local_write(String query){
         try {
             local_write.write(query+"\n");
             local_write.flush();

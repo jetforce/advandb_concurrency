@@ -53,7 +53,7 @@ public class UI {
         
         int times = Integer.parseInt(readField.getText());
         System.out.println("times "+times );
-        String Query = "SELECT"+"\n"+"* FROM survey"+"\n";
+        String Query = "SELECT"+"\n"+"* FROM location"+"\n";
         this.node.readSelf(times,Query);
         
     }

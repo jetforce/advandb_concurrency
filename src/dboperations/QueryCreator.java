@@ -9,6 +9,7 @@ import dbcon.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -25,12 +26,18 @@ public class QueryCreator {
         
     }
     
-    public String delete() {
-        String deleteQuery = 
-            "DELETE\n" +
-            "FROM survey " +
-            "WHERE house_id = " + getMax();
-        return deleteQuery;
+    public ArrayList<String> delete(int n) {
+        ArrayList<String> queries = new ArrayList<>();
+        int max = getMax();
+        for(int i = 0; i < n; i++) {
+            String deleteQuery = 
+                "DELETE\n" +
+                "FROM survey " +
+                "WHERE house_id = " + max + "\n";
+            queries.add(deleteQuery);
+            max--;
+        }
+        return queries;
     }
     
     private int getMax() {

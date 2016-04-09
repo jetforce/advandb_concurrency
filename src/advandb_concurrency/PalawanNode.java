@@ -26,11 +26,7 @@ public class PalawanNode extends Node{
         ArrayList<String> queries = new ArrayList<>();
         QueryCreator qc = new QueryCreator();
         int n = Integer.parseInt(ui.deleteField.getText());
-        for(int i = 0; i < n; i++) {
-            String query_stmt = qc.delete(); 
-            queries.add(query_stmt);
-            //addTransaction(query_stmt, 1);  // 1 is hardcoded / to be replaced
-        }
+        queries = qc.delete(n);
         
         super.middle.multiple_updateMain(queries);
         

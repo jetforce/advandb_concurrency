@@ -26,6 +26,22 @@ public class QueryCreator {
         
     }
     
+    
+    public String addTransaction(String query_stmt, int place_id) {
+        String testQuery = 
+            "INSERT\n" +
+            "INTO transactions (place_id, query_stmt, synced)\n" +
+            "VALUES (" + place_id + ", \" " + query_stmt + " \", 0);\n";
+        //Receiver r = new Receiver(testQuery);
+        //r.work();
+        return testQuery;
+    }
+    
+    
+    
+    
+    
+    
     public ArrayList<String> delete(int n) {
         ArrayList<String> queries = new ArrayList<>();
         int max = getMax();

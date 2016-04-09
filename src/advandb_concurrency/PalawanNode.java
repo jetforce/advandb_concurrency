@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 public class PalawanNode extends Node{
 
+    int place_id = 2;
+    
     public PalawanNode(UI ui) throws IOException {
         super("palawan", 1235, ui);
     }
@@ -28,7 +30,7 @@ public class PalawanNode extends Node{
         int n = Integer.parseInt(ui.deleteField.getText());
         queries = qc.delete(n);
         
-        super.middle.multiple_updateMain(queries);
+        super.middle.multiple_updateMain(queries,place_id);
         
     }
     

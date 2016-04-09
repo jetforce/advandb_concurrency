@@ -5,6 +5,7 @@
  */
 package network;
 
+import dboperations.QueryCreator;
 import java.util.ArrayList;
 
 /**
@@ -15,10 +16,13 @@ public class UpdateSender extends Thread{
     
     private ArrayList<String> q;
     private Middle m;
+    private QueryCreator qc = new QueryCreator();
+    private int id;
     
-    public UpdateSender(ArrayList<String> queries, Middle m){
+    public UpdateSender(ArrayList<String> queries, Middle m, int id){
         this.q = queries;
         this.m = m;
+        this.id = id;
     }
     
     public void run(){
@@ -30,7 +34,8 @@ public class UpdateSender extends Thread{
        if(n){
            //
        }else{
-           this.m.local_write(this.q.get(i));
+           String tq =  qc.addTransaction(this.q.get(i), id);
+           this.m.local_write(tq);
        }
             
         }

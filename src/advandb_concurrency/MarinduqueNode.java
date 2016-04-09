@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 public class MarinduqueNode extends Node{
 
+    private int place_id=1;    
+    
     public MarinduqueNode(UI ui) throws IOException {
         super("marinduque", 1235, ui);
     }
@@ -27,7 +29,7 @@ public class MarinduqueNode extends Node{
         int n = Integer.parseInt(ui.deleteField.getText());
         queries = qc.delete(n);
         
-        super.middle.multiple_updateMain(queries);
+        super.middle.multiple_updateMain(queries,place_id);
     }
    
 }

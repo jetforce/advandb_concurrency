@@ -26,7 +26,6 @@ public class MarinduqueNode extends Node{
         QueryCreator qc = new QueryCreator();
         int n = Integer.parseInt(ui.deleteField.getText());
         queries = qc.delete(n);
-        
         super.middle.multiple_updateMain(queries,place_id);
     }
    

@@ -5,7 +5,9 @@
  */
 package advandb_concurrency;
 
+import dboperations.QueryCreator;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,7 +21,11 @@ public class MainNode extends Node{
     
     @Override
     public void sendMain(){
-        
+        ArrayList<String> queries = new ArrayList<>();
+        QueryCreator qc = new QueryCreator();
+        int n = Integer.parseInt(ui.deleteField.getText());
+        queries = qc.delete(n);
+        super.middle.multiple_updateMarinduque(queries,1);
         
     }
     

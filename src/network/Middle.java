@@ -42,6 +42,11 @@ public class Middle {
     }    
     
     
+    public void multiple_updateMarinduque(ArrayList<String> queries, int id){
+        UpdateSenderMarinduque sender = new UpdateSenderMarinduque(queries,this, id);
+        sender.start();
+    }
+    
     public void multiple_updateMain(ArrayList<String> queries,int id){
         UpdateSender sender = new UpdateSender(queries,this, id);
         sender.start();

@@ -63,13 +63,8 @@ public class Node {
     }
     
     public void sendMain(){
-       boolean n = this.middle.sendMain("SELECT\n"+"* FROM survey\n"); 
-       if(n){
-           //Success sending
-       }else{
-           //fail sending
-       }
-       System.out.println(n);
+
+       System.out.println("Hello");
     }
     
     

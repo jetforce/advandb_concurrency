@@ -57,7 +57,8 @@ public class Listener extends Thread{
             return true;
         } catch (IOException ex) {
             life = false;
-            Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Connection Reset");
+            //Logger.getLogger(Listener.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         

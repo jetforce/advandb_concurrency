@@ -15,15 +15,13 @@ import java.util.ArrayList;
  */
 public class MarinduqueNode extends Node{
 
-    private int place_id=1;    
-    
+    private int place_id=1;
     public MarinduqueNode(UI ui) throws IOException {
         super("marinduque", 1235, ui);
     }
     
     @Override
     public void sendMain(){
-       
         ArrayList<String> queries = new ArrayList<>();
         QueryCreator qc = new QueryCreator();
         int n = Integer.parseInt(ui.deleteField.getText());

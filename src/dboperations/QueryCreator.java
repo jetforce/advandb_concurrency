@@ -42,41 +42,47 @@ public class QueryCreator {
     
     
     
-    public ArrayList<String> delete(int n) {
-        ArrayList<String> queries = new ArrayList<>();
-        int max = getMax();
+    public ArrayList<Query> delete(int n) {
+        ArrayList<Query> queries = new ArrayList<>();
+        int x[] = getMax();
+        int max = x[0];
+        int place_id = x[1];
         for(int i = 0; i < n; i++) {
             String deleteQuery = 
                 "DELETE\n" +
                 "FROM location " +
                 "WHERE house_id = " + max + "\n";
-            queries.add(deleteQuery);
+            queries.add(new Query(deleteQuery, place_id));
             max--;
         }
         return queries;
     }
     
-    private int getMax() {
+    private int[] getMax() {
         String getMaxQuery =
                 "SELECT\n" +
-                "MAX(house_id) as max FROM family;";
+                "MAX(house_id) as max, place_id FROM location;";
         
         Statement s = null;
         ResultSet rs = null;
         
-        int max = 0;
+        //int max = 0, place_id;
+        int x[] = new int[3];
+        
         try {
             s = Data.con.createStatement();
             s.execute(getMaxQuery);
             rs = s.getResultSet();
             
-            if(rs.next())
-                max = rs.getInt("max");
+            if(rs.next()) {
+                x[0] = rs.getInt("max");
+                x[1] = rs.getInt("place_id");
+            }
         } catch (SQLException ex) {
-            System.out.println("Error in getting max");
+            System.out.println(ex.toString());
         }
         
-        return max;
+        return x;
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package advandb_concurrency;
 
+import dboperations.Query;
 import dboperations.QueryCreator;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class PalawanNode extends Node{
     @Override
     public void sendMain(){
         
-        ArrayList<String> queries = new ArrayList<>();
+        ArrayList<Query> queries = new ArrayList<>();
         QueryCreator qc = new QueryCreator();
         int n = Integer.parseInt(ui.deleteField.getText());
         queries = qc.delete(n);

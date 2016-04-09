@@ -5,9 +5,11 @@
  */
 package advandb_concurrency;
 
+import dboperations.Query;
 import dboperations.QueryCreator;
 import java.io.IOException;
 import java.util.ArrayList;
+import network.Connector;
 
 /**
  *
@@ -22,11 +24,23 @@ public class MarinduqueNode extends Node{
     
     @Override
     public void sendMain(){
-        ArrayList<String> queries = new ArrayList<>();
+        ArrayList<Query> queries = new ArrayList<>();
         QueryCreator qc = new QueryCreator();
         int n = Integer.parseInt(ui.deleteField.getText());
         queries = qc.delete(n);
         super.middle.multiple_updateMain(queries,place_id);
     }
+    
+    @Override
+        public void activate() throws IOException{   
+        this.server.start();
+        Connector c = new Connector("localhost", this.port ,this.name,"main",this.middle);
+        Connector c2 = new Connector("192.168.1.17",1235,this.name,"main",this.middle);
+        
+        c.ConnectSelf(this.port);
+        c2.Connect();
+    }
+    
+    
    
 }

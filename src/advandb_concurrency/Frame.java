@@ -38,6 +38,7 @@ public class Frame extends javax.swing.JFrame {
         readGoBtn = new javax.swing.JButton();
         deleteGoBtn = new javax.swing.JButton();
         updateGoBtn = new javax.swing.JButton();
+        syncButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         infoArea = new javax.swing.JTextArea();
@@ -92,6 +93,8 @@ public class Frame extends javax.swing.JFrame {
         updateGoBtn.setText("GO");
         updateGoBtn.setPreferredSize(new java.awt.Dimension(70, 44));
 
+        syncButton.setText("Sync");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -109,6 +112,7 @@ public class Frame extends javax.swing.JFrame {
                     .addComponent(updateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(syncButton)
                     .addComponent(updateGoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteGoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(readGoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,7 +138,9 @@ public class Frame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(updateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(updateGoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(syncButton)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -249,6 +255,7 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     protected javax.swing.JTextField readField;
     protected javax.swing.JButton readGoBtn;
+    protected javax.swing.JButton syncButton;
     protected javax.swing.JTextField updateField;
     protected javax.swing.JButton updateGoBtn;
     // End of variables declaration//GEN-END:variables

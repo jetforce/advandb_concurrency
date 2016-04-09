@@ -37,7 +37,8 @@ public class Server extends Thread{
         Socket socket;
         
         while(this.life){     
-            try {  
+            try {
+                System.out.println("Receiving connection");
                 socket= this.server.accept();
                 this.middle.connect(socket);    
                 //System.out.println("Resiv connect");

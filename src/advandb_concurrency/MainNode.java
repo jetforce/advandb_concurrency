@@ -30,8 +30,10 @@ public class MainNode extends Node{
         c2.Connect();
     }
     
-    
-    
+    public void sync(){
+         syncer.Sync_with_palawanmarin();
+    }
+      
     @Override
     public void sendMain(){
         ArrayList<Query> queries = new ArrayList<>();

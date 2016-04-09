@@ -5,6 +5,7 @@
  */
 package advandb_concurrency;
 
+import dboperations.Syncer;
 import java.io.IOException;
 import network.Connector;
 import network.Middle;
@@ -22,6 +23,7 @@ public class Node {
     protected String name;
     protected int port;
     protected UI ui;
+    protected Syncer syncer;
     
     public ThreadPool executor;
     /*
@@ -39,6 +41,7 @@ public class Node {
         this.executor.start();
         this.ui = ui;
         this.middle = new Middle(name,executor,this.ui);
+        this.syncer = new Syncer(this.middle);
         this.port = port;
         this.name = name;
         this.server = new Server(port,name,this.middle); 
@@ -48,14 +51,14 @@ public class Node {
     
      
     public void activate() throws IOException{
-       
-        
+       System.out.println("Here");
+        /*
         this.server.start();
         Connector c = new Connector("localhost", this.port ,this.name,"main",this.middle);
         Connector c2 = new Connector("192.168.1.19",1235,this.name,"marinduque",this.middle);
-        
         c.ConnectSelf(this.port);
         c2.Connect();
+                */
     }
     
     public void readSelf(int times , String Query){
@@ -68,5 +71,9 @@ public class Node {
     }
     
     
+
+        public void sync(){
+        syncer.Sync_with_main();
+    }
     
 }

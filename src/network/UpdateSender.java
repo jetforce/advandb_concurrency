@@ -31,11 +31,11 @@ public class UpdateSender extends Thread{
         boolean n;
         
        for(int i=0; i< q.size(); i++){
-            n = this.m.sendMain(this.q.get(i).toString()); 
+            n = this.m.sendMain(this.q.get(i).query); 
        if(n){
-           //
+           this.m.local_write( this.q.get(i).query );
        }else{
-           String tq =  qc.addTransaction(this.q.get(i).toString(), id);
+           String tq =  qc.addTransaction(this.q.get(i).query, id);
            this.m.local_write(tq);
        }
             

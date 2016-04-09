@@ -53,6 +53,7 @@ public class Connector {
     public void Connect(){
         
         try {
+            System.out.println("Here waiting for connection");
             this.socket = new Socket(address,port);
             System.out.println("connected! " +this.myname);
             switch(this.urname){
@@ -68,7 +69,8 @@ public class Connector {
             }
             
         }catch(ConnectException e){
-            System.out.println("Unable to connect to "+this.myname);
+            
+            System.out.println("Unable to connect to "+this.myname+" "+e.toString());
         }catch (IOException ex) {
             System.out.println("Failed to connect");
             Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);

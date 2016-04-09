@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  */
 public class UI {
     
-    JButton readGo, deleteGo, updateGo;
+    JButton readGo, deleteGo, updateGo, syncButton;
     JTextField readField, deleteField, updateField;
     JTextArea infoArea;
     private Node node;
@@ -32,6 +32,7 @@ public class UI {
         readGo = frame.readGoBtn;           readGo.addActionListener(new GoListener("read"));
         deleteGo = frame.deleteGoBtn;       deleteGo.addActionListener(new GoListener("delete"));
         updateGo = frame.updateGoBtn;       updateGo.addActionListener(new GoListener("update"));
+        syncButton = frame.syncButton;      syncButton.addActionListener(new GoListener("sync"));
         readField = frame.readField;
         deleteField = frame.deleteField;
         updateField = frame.updateField;
@@ -61,6 +62,10 @@ public class UI {
         this.node.sendMain();
     }
     
+    private void sync(){
+        this.node.sync();
+    }
+    
     private void update(){
         
     }
@@ -75,7 +80,8 @@ public class UI {
             switch(buttonType) {
                 case "read": read(); break;
                 case "delete": delete(); break;
-                case "update": update();
+                case "update": update();break;
+                case  "sync": sync(); break;   
             }
         }
     }
